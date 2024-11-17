@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+file = ARGV[1].split('=').last
+
+File.open(file, 'r') do |f|
+  f.each_line do |line|
+    exit 1 if line.include?('TEMPLATE-ERROR')
+
+    puts line
+  end
+end
