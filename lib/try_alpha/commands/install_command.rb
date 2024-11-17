@@ -1,6 +1,6 @@
 module TryAlpha
   module Commands
-    class AddCommand < BaseCommand
+    class InstallCommand < BaseCommand
       desc '[TEMPLATE_NAME]', 'Installs a template'
       long_desc 'Installs the specified template from the TryAlpha registry'
       option :yes, type: :boolean, desc: 'Skip confirmation prompt'
@@ -42,9 +42,9 @@ module TryAlpha
       def install_template
         with_template_file do |file|
           say("Installing #{template_name}...", :green)
-          result = system("bundle exec bin/rails app:template LOCATION=#{file.path}")
-
-          raise AddTemplateError, template_name unless result
+          runner = RailsTemplateRunner.run(file.path)
+          say(runner.output)
+          raise InstallTemplateError, template_name unless runner.success?
 
           say("Template #{template_name} installed successfully!", :green)
         end

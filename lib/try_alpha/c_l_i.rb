@@ -12,9 +12,9 @@ module TryAlpha
       super
     end
 
-    [Commands::AddCommand,
-     Commands::CompileCommand,
+    [Commands::CompileCommand,
      Commands::InitCommand,
+     Commands::InstallCommand,
      Commands::ListCommand].map { |command| command.inject!(self) }
   end
 end

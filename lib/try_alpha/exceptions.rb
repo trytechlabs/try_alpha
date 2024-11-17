@@ -10,9 +10,9 @@ module TryAlpha
     end
   end
 
-  AddTemplateError = Class.new(ClientError) do
+  InstallTemplateError = Class.new(ClientError) do
     def initialize(template_name)
-      super("Failed to add template '#{template_name}'")
+      super("Failed to install template '#{template_name}'")
     end
   end
 end
