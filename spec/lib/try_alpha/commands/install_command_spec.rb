@@ -42,14 +42,10 @@ RSpec.describe TryAlpha::Commands::InstallCommand do
             stub_api_client!(:with_valid_credentials, :with_found_invalid_template)
           end
 
-          around do |example|
-            original_stdout = $stdout
-            $stdout = StringIO.new
-            example.run
-            $stdout = original_stdout
+          it do
+            expect { install }.to output(/Installing foo/).to_stdout.and \
+              raise_error(TryAlpha::InstallTemplateError, /foo/)
           end
-
-          it { expect { install }.to raise_error(TryAlpha::InstallTemplateError, /foo/) }
         end
 
         context 'and the template is found and valid' do

@@ -1,6 +1,6 @@
 require 'try_alpha'
 
-Dir[File.join(__dir__, 'support', '**', '*.rb')].sort.each { |file| require file }
+Dir[File.join(__dir__, 'support', '**', '*.rb')].each { |file| require file }
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|

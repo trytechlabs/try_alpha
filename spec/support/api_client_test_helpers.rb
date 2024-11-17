@@ -1,4 +1,3 @@
-
 require 'rspec'
 require 'try_alpha'
 
@@ -39,13 +38,13 @@ module TryAlpha
         def with_found_template
           { template: double(:template,
                              success?: true,
-                             parsed_body: { content: 'Rails templating command stub'} ) }
+                             parsed_body: { content: 'Rails templating command stub' }) }
         end
 
         def with_found_invalid_template
           { template: double(:template,
                              success?: true,
-                             parsed_body: { content: 'TEMPLATE-ERROR'} ) }
+                             parsed_body: { content: 'TEMPLATE-ERROR' }) }
         end
       end
 
