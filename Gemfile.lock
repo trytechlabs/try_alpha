@@ -112,7 +112,7 @@ PLATFORMS
 DEPENDENCIES
   rake (~> 13.0)
   rspec (~> 3.0)
-  rubocop (~> 1.71)
+  rubocop (~> 1.72)
   rubocop-rake
   rubocop-rspec
   try_alpha!
