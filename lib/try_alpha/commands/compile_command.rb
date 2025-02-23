@@ -90,8 +90,8 @@ module TryAlpha
       end
 
       def done
-        say("Template compiled successfully!", :green)
         say("Template file saved at: #{compiled_template_file_path}")
+        say('Template compiled successfully!', :green)
       end
 
       def publish_template
