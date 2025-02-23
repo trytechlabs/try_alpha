@@ -10,6 +10,10 @@ module TryAlpha
       rescue JSON::ParserError
         {}
       end
+
+      def errors
+        parsed_body[:errors]
+      end
     end
   end
 end

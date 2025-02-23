@@ -15,6 +15,7 @@ module TryAlpha
     [Commands::CompileCommand,
      Commands::InitCommand,
      Commands::InstallCommand,
-     Commands::ListCommand].map { |command| command.inject!(self) }
+     Commands::ListCommand,
+     Commands::PublishCommand].map { |command| command.inject!(self) }
   end
 end
