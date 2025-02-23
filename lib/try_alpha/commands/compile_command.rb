@@ -1,9 +1,9 @@
 module TryAlpha
   module Commands
     class CompileCommand < BaseCommand
-      desc '[CONFIG_FILENAME]', 'Compile a template to allow deploy it to the Alpha marketplace'
+      desc '[CONFIG_FILENAME]', 'Compile a template to allow publish it in the Alpha marketplace'
       long_desc <<-LONGDESC
-        This command will compile a template to allow deploy it to the Alpha marketplace.
+        This command will compile a template to allow publish it in the Alpha marketplace.
 
         To compile a template you need to provide a configuration file, which is a YAML file
         that contains the necessary information to compile the template. The configuration file

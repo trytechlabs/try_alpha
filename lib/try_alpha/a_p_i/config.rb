@@ -1,12 +1,15 @@
 module TryAlpha
   module API
     CONFIG_FILE_DIR = '.alpha'.freeze
-    CONFIG_FILE_NAME = 'config.yml'.freeze
-    CONFIG_FILE_PATH = "#{CONFIG_FILE_DIR}/#{CONFIG_FILE_NAME}".freeze
 
     Config = Struct.new(:token, :organization_slug, keyword_init: true) do
+      def self.config_file_path
+        file_name = ENV['ALPHA_MODE'] == 'development' ? 'dev-config.yml' : 'config.yml'
+        File.join(CONFIG_FILE_DIR, file_name)
+      end
+
       def self.load
-        new(YAML.load_file(CONFIG_FILE_PATH) || {})
+        new(YAML.load_file(config_file_path) || {})
       rescue Errno::ENOENT
         new
       end
@@ -27,7 +30,7 @@ module TryAlpha
       end
 
       def save_config
-        File.write(CONFIG_FILE_PATH, as_json.deep_symbolize_keys.to_yaml)
+        File.write(self.class.config_file_path, as_json.deep_symbolize_keys.to_yaml)
       end
     end
   end
