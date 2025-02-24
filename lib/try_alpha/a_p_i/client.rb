@@ -15,21 +15,29 @@ module TryAlpha
         request(:get, "/templates/#{slug}")
       end
 
+      def publish_template(template_file_path)
+        payload = { file: HTTP::FormData::File.new(template_file_path) }
+
+        request(:post, '/templates', payload, using: :form)
+      end
+
       private
 
-      def request(verb, resource, payload = {}, headers = {})
+      def request(verb, resource, payload = {}, **options)
         uri = [TryAlpha.api_url, resource].join
-        headers = default_headers.merge(headers)
-
-        response = HTTP::Client.new.request(verb, uri, json: payload, headers:)
+        using = options.fetch(:using, :json)
+        headers = default_headers(using).merge(options.fetch(:headers, {}))
+        response = HTTP::Client.new.request(verb, uri, using => payload, headers:)
 
         Response.new(status: response.status, body: response.body)
       rescue HTTP::Error => e
         raise ConnectionError, e.message
       end
 
-      def default_headers
-        { 'Authorization' => "Bearer #{token}", 'Content-Type' => 'application/json' }
+      def default_headers(using)
+        { 'Authorization' => "Bearer #{token}" }.tap do |headers|
+          headers['Content-Type'] = 'application/json' if using == :json
+        end
       end
 
       def config

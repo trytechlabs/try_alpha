@@ -15,4 +15,10 @@ module TryAlpha
       super("Failed to install template '#{template_name}'")
     end
   end
+
+  PublishTemplateError = Class.new(ClientError) do
+    def initialize(response)
+      super("Failed to publish template: #{response.errors.join(', ')}")
+    end
+  end
 end

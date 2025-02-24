@@ -1,0 +1,9 @@
+---
+name: 'Rspec Dummy'
+slug: 'rspec-dummy'
+version: '1.0.1'
+description: 'Dummy RSpec template (for testing purposes)'
+content: |
+  gem 'rspec'
+
+  <%= include_file 'spec/spec_helper.rb' %>
