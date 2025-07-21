@@ -30,6 +30,6 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'activesupport', '>= 6.0'
   spec.add_dependency 'http', '>= 4.4', '< 6.0'
-  spec.add_dependency 'thor', '~> 1.3.2'
+  spec.add_dependency 'thor', '>= 1.3.2', '< 1.5.0'
   spec.metadata['rubygems_mfa_required'] = 'true'
 end
